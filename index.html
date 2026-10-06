@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мега-Тест по Информатике (50 вопросов)</title>
+    <title>Мой первый тест по C++ и железу (не судите строго)</title>
     <style>
+        /* Написал стили сам (ну почти, подсмотрел на StackOverflow) */
         :root {
-            --bg-color: #1e1e2f;
-            --container-bg: #252538;
-            --card-bg: #2d2d44;
-            --opt-bg: #363654;
-            --opt-hover: #47476f;
-            --text-color: #ffffff;
-            --accent-color: #00d2ff;
+            --bg-color: #0f172a;
+            --container-bg: #1e293b;
+            --card-bg: #334155;
+            --opt-bg: #475569;
+            --opt-hover: #64748b;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
         }
 
         [data-theme="light"] {
-            --bg-color: #eef2f5;
+            --bg-color: #f1f5f9;
             --container-bg: #ffffff;
-            --card-bg: #f0f4f8;
-            --opt-bg: #e2e8f0;
-            --opt-hover: #cbd5e1;
-            --text-color: #1e293b;
+            --card-bg: #e2e8f0;
+            --opt-bg: #cbd5e1;
+            --opt-hover: #94a3b8;
+            --text-color: #0f172a;
             --accent-color: #0284c7;
         }
 
-        * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
+        * { box-sizing: border-box; transition: all 0.2s ease; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', Courier, monospace; /* Чисто по-хакерски */
             background: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -35,228 +37,202 @@
             display: flex;
             justify-content: center;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 750px;
             width: 100%;
             background: var(--container-bg);
             padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 2px dashed var(--accent-color);
         }
+
         .header-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        h1 { margin: 0; color: var(--accent-color); font-size: 1.8em; }
+
+        h1 { margin: 0; color: var(--accent-color); font-size: 1.5em; }
+
         .theme-btn {
             background: var(--card-bg);
             color: var(--text-color);
-            border: 2px solid var(--accent-color);
-            padding: 8px 16px;
-            border-radius: 20px;
+            border: 1px solid var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-family: inherit;
         }
+
         .q-card {
             background: var(--card-bg);
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
         }
-        .q-title { font-weight: bold; margin-bottom: 12px; font-size: 1.1em; }
-        .options { display: flex; flex-direction: column; gap: 8px; }
+
+        .q-title { font-weight: bold; margin-bottom: 10px; }
+        
+        .options { display: flex; flex-direction: column; gap: 6px; }
+        
         label {
             background: var(--opt-bg);
-            padding: 10px;
+            padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
+            display: block;
         }
-        label:hover { background: var(--opt-hover); }
-        input[type="radio"] { margin-right: 10px; }
+        
+        label:hover { background: var(--opt-hover); transform: translateX(4px); }
+        input[type="radio"] { margin-right: 8px; }
+
         .submit-btn {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             background: var(--accent-color);
-            color: #fff;
+            color: #000;
             border: none;
             border-radius: 8px;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
+            font-family: inherit;
         }
-        .submit-btn:hover { opacity: 0.9; }
+        
+        .submit-btn:hover { filter: brightness(1.1); }
+
         #results {
-            margin-top: 30px;
+            margin-top: 20px;
             text-align: center;
             display: none;
             padding: 20px;
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 8px;
         }
+
         #results img {
-            max-width: 220px;
-            border-radius: 12px;
-            margin-top: 15px;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-top: 10px;
         }
-        .score-text { font-size: 1.5em; font-weight: bold; }
+
+        .score-text { font-size: 1.3em; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header-controls">
-        <h1>💻 Экзамен по Информатике (50 вопросов)</h1>
+        <h1>🚀 Тест: C++ & Железо ПК</h1>
         <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Тёмная</button>
     </div>
+    <p style="font-size: 0.9em; opacity: 0.8;">Привет! Я тут попытался сделать тест на 20 вопросов. Если что-то сломается — я не виноват, это всё баги в матрице 🤡</p>
 
     <form id="quizForm">
         <div id="questions-container"></div>
-        <button type="button" class="submit-btn" onclick="calculateResult()">Завершить тест и проверить!</button>
+        <button type="button" class="submit-btn" onclick="calculateResult()">Запустить компиляцию результатов (Проверить)</button>
     </form>
 
     <div id="results">
         <div class="score-text" id="scoreText"></div>
         <p id="feedbackText"></p>
-        <img id="statusImg" src="" alt="Результат">
+        <img id="statusImg" src="" alt="Мем результата">
     </div>
 </div>
 
 <script>
-const questions = [
-    // --- Язык C++ (1-8) ---
-    { q: "1. Какой оператор используется для вывода данных в поток в C++?", opts: ["cin >>", "cout <<", "printf()", "print()"], a: 1 },
-    { q: "2. Что вернет выражение 11 % 3 в C++?", opts: ["3", "2", "3.66", "1"], a: 1 },
-    { q: "3. Какой оператор возвращает адрес переменной?", opts: ["*", "&", "->", "%"], a: 1 },
-    { q: "4. Какой заголовочный файл необходим для работы с std::cout?", opts: ["<math.h>", "<stdlib.h>", "<iostream>", "<string>"], a: 2 },
-    { q: "5. Какой символ завершает большинство инструкций в C++?", opts: [":", ".", ";", ","], a: 2 },
-    { q: "6. Какой тип данных используется для хранения одного символа?", opts: ["string", "char", "int", "bool"], a: 1 },
-    { q: "7. Как называется функция, с которой начинается выполнение любой программы на C++?", opts: ["start()", "init()", "main()", "run()"], a: 2 },
-    { q: "8. Какой оператор используется для сравнения «равно» в C++?", opts: ["=", "==", "===", "equals"], a: 1 },
+    // Массив вопросов (ровно 20 штук: 10 про C++ и 10 про железо/ПК)
+    const questions = [
+        // --- C++ (1-10) ---
+        { q: "1. Какой оператор используется для вывода данных в поток в C++?", opts: ["cin >>", "cout <<", "printf()", "print()"], a: 1 },
+        { q: "2. Что вернет выражение 11 % 3 в C++?", opts: ["3", "2", "3.66", "1"], a: 1 },
+        { q: "3. Какой оператор возвращает адрес переменной?", opts: ["*", "&", "->", "%"], a: 1 },
+        { q: "4. Какой заголовочный файл необходим для работы с std::cout?", opts: ["<math.h>", "<stdlib.h>", "<iostream>", "<string>"], a: 2 },
+        { q: "5. Какой символ завершает большинство инструкций в C++?", opts: [":", ".", ";", ","], a: 2 },
+        { q: "6. Какой тип данных используется для хранения одного символа?", opts: ["string", "char", "int", "bool"], a: 1 },
+        { q: "7. Как называется функция, с которой начинается выполнение любой программы на C++?", opts: ["start()", "init()", "main()", "run()"], a: 2 },
+        { q: "8. Какой оператор используется для сравнения «равно» в C++?", opts: ["=", "==", "===", "equals"], a: 1 },
+        { q: "9. Логическое И (AND) в C++ обозначается символом:", opts: ["||", "&&", "and", "&="], a: 1 },
+        { q: "10. Какой оператор используется для ввода данных из потока в C++?", opts: ["cin >>", "cout <<", "input()", "scanf()"], a: 0 },
 
-    // --- Сети и Интернет (9-16) ---
-    { q: "9. Что такое IP-адрес?", opts: ["Уникальный сетевой адрес устройства", "Модель сетевой карты", "Скорость интернет-соединения", "Серийный номер роутера"], a: 0 },
-    { q: "10. Какое основное отличие HTTPS от HTTP?", opts: ["HTTPS быстрее", "HTTPS шифрует передаваемые данные", "HTTPS работает без интернета", "HTTP устарел и не используется"], a: 1 },
-    { q: "11. Какую функцию выполняет DNS-сервер?", opts: ["Преобразует доменные имена в IP-адреса", "Защищает от вирусов", "Хранит файлы сайтов", "Выдаёт физические адреса"], a: 0 },
-    { q: "12. Какой стандартный порт используется для защищенного протокола HTTPS?", opts: ["80", "21", "443", "8080"], a: 2 },
-    { q: "13. Что такое MAC-адрес?", opts: ["Адрес компьютера в сети Интернет", "Физический адрес сетевого оборудования", "Имя пользователя в сети", "Пароль от Wi-Fi"], a: 1 },
-    { q: "14. Какой протокол отвечает за автоматическую выдачу IP-адресов в сети?", opts: ["DHCP", "FTP", "SMTP", "DNS"], a: 0 },
-    { q: "15. Какое устройство объединяет устройства в одну локальную сеть на уровне L2?", opts: ["Маршрутизатор (Роутер)", "Коммутатор (Свитч)", "Модем", "Репитер"], a: 1 },
-    { q: "16. Какая утилита командной строки проверяет доступность узла в сети?", opts: ["ipconfig", "ping", "tracert", "netstat"], a: 1 },
+        // --- Железо и ПК (11-20) ---
+        { q: "11. Что называют «мозгом» компьютера?", opts: ["Оперативная память", "Центральный процессор (CPU)", "Видеокарта", "Материнская плата"], a: 1 },
+        { q: "12. Какое главное свойство у оперативной памяти (RAM)?", opts: ["Энергонезависимость", "Энергозависимость (всё стирается при выключении)", "Медленная скорость", "Неограниченный объем"], a: 1 },
+        { q: "13. В чем измеряется тактовая частота процессора?", opts: ["Гигабайты (ГБ)", "Гигагерцы (ГГц)", "Ватты (Вт)", "Митры"], a: 1 },
+        { q: "14. Какой накопитель обеспечивает наивысшую скорость чтения/записи?", opts: ["HDD", "NVMe SSD", "CD-ROM", "Флешка USB 2.0"], a: 1 },
+        { q: "15. Какое устройство отвечает за вывод графики и картинки на монитор?", opts: ["Звуковая карта", "Видеокарта (GPU)", "Блок питания", "Кулер"], a: 1 },
+        { q: "16. Где хранятся базовые настройки системы и первичный код запуска ПК (до загрузки ОС)?", opts: ["В оперативной памяти", "В BIOS / UEFI (на микросхеме ПЗУ)", "На жестком диске в папке Windows", "В процессоре"], a: 1 },
+        { q: "17. Какая комбинация клавиш обычно закрывает активное окно в Windows?", opts: ["Ctrl + C", "Alt + F4", "Ctrl + Shift + Esc", "Win + L"], a: 1 },
+        { q: "18. Какая файловая система является основной для современных версий Windows?", opts: ["FAT32", "NTFS", "ext4", "MS-DOS"], a: 1 },
+        { q: "19. Сколько байт содержится в 1 Килобайте (КБ) в компьютерной информатике?", opts: ["1000", "1024", "512", "2048"], a: 1 },
+        { q: "20. В какой системе счисления функционируют цифровые компьютеры на уровне транзисторов?", opts: ["Десятичная", "Восьмеричная", "Двоичная", "Шестнадцатеричная"], a: 2 }
+    ];
 
-    // --- ОС Windows (17-23) ---
-    { q: "17. Комбинация клавиш для закрытия активного окна в Windows?", opts: ["Ctrl + C", "Alt + F4", "Ctrl + Shift + Esc", "Win + L"], a: 1 },
-    { q: "18. Какая команда в CMD отображает текущую конфигурацию IP?", opts: ["ipconfig", "ifconfig", "ping", "netstat"], a: 0 },
-    { q: "19. Какая файловая система является основной для современных версий Windows?", opts: ["FAT32", "NTFS", "ext4", "exFAT"], a: 1 },
-    { q: "20. Как вызвать Диспетчер задач напрямую с клавиатуры?", opts: ["Ctrl + Alt + Del", "Ctrl + Shift + Esc", "Win + R", "Alt + Tab"], a: 1 },
-    { q: "21. Какая команда вызывает редактор реестра Windows?", opts: ["regedit", "cmd", "services.msc", "msconfig"], a: 0 },
-    { q: "22. Какое горячее сочетание быстро блокирует рабочий стол Windows?", opts: ["Win + D", "Win + L", "Ctrl + Alt + Del", "Win + E"], a: 1 },
-    { q: "23. Какое расширение имеют стандартные исполняемые файлы в ОС Windows?", opts: [".bat", ".exe", ".cmd", ".msi"], a: 1 },
-
-    // --- Железо и Устройство ПК (24-29) ---
-    { q: "24. Что называют «мозгом» компьютера?", opts: ["Оперативная память", "Центральный процессор (CPU)", "Видеокарта (GPU)", "Материнская плата"], a: 1 },
-    { q: "25. Какое основное свойство у оперативной памяти (RAM)?", opts: ["Энергонезависимость", "Энергозависимость (стирается при выключении)", "Медленная скорость", "Неограниченный объём"], a: 1 },
-    { q: "26. В чем измеряется тактовая частота процессора?", opts: ["Гигабайты (ГБ)", "Гигагерцы (ГГц)", "Ватты (Вт)", "Мегабиты (Мб)"], a: 1 },
-    { q: "27. Какой накопитель обеспечивает наивысшую скорость чтения/записи?", opts: ["HDD", "NVMe SSD", "CD-ROM", "USB Flash"], a: 1 },
-    { q: "28. Какое устройство отвечает за вывод изображения на монитор?", opts: ["Звуковая карта", "Видеокарта (GPU)", "Блок питания", "Северный мост"], a: 1 },
-    { q: "29. Где хранятся базовые настройки системы и первичная инструкция загрузки ПК?", opts: ["В оперативке", "В BIOS / UEFI (в микросхеме ПЗУ)", "На жестком диске", "В процессоре"], a: 1 },
-
-    // --- Python (30-34) ---
-    { q: "30. Какая функция используется для вывода данных на экран в Python?", opts: ["echo()", "console.log()", "print()", "System.out.println()"], a: 2 },
-    { q: "31. Какое ключевое слово используется для объявления функции в Python?", opts: ["function", "def", "func", "void"], a: 1 },
-    { q: "32. Какой тип данных в Python является неизменяемым?", opts: ["Список (list)", "Словарь (dict)", "Кортеж (tuple)", "Множество (set)"], a: 2 },
-    { q: "33. Как обозначаются однострочные комментарии в Python?", opts: ["//", "/* */", "#", "--"], a: 2 },
-    { q: "34. Что вернет тип данных type(3.14) в Python?", opts: ["<class 'int'>", "<class 'float'>", "<class 'double'>", "<class 'str'>"], a: 1 },
-
-    // --- Linux и Командная строка (35-38) ---
-    { q: "35. Какая команда в Linux отображает содержимое текущей директории?", opts: ["dir", "ls", "cd", "pwd"], a: 1 },
-    { q: "36. Какая команда используется для создания новой папки в Linux?", opts: ["touch", "mkdir", "rmdir", "create"], a: 1 },
-    { q: "37. Какая команда выводит текущую рабочую директорию?", opts: ["ls", "cd", "pwd", "whoami"], a: 2 },
-    { q: "38. Суперпользователь в ОС Linux по умолчанию называется:", opts: ["Admin", "Administrator", "root", "system"], a: 2 },
-
-    // --- Веб-технологии и HTML/CSS (39-42) ---
-    { q: "39. Что означает аббревиатура HTML?", opts: ["HyperText Markup Language", "HighTech Modern Language", "Hyperlink Text Mode Language", "Home Tool Markup Language"], a: 0 },
-    { q: "40. Какой тег HTML используется для создания кликабельных ссылок?", opts: ["<link>", "<a>", "<href>", "<url>"], a: 1 },
-    { q: "41. Для чего используется CSS?", opts: ["Для создания логики сайта", "Для стилизации и оформления элементов HTML", "Для работы с базой данных", "Для настройки сервера"], a: 1 },
-    { q: "42. Какой тег создает самый крупный заголовок в HTML?", opts: ["<h6>", "<header>", "<h1>", "<head>"], a: 2 },
-
-    // --- Базы данных и SQL (43-45) ---
-    { q: "43. Какой SQL-запрос используется для извлечения данных из таблицы?", opts: ["UPDATE", "INSERT", "SELECT", "DELETE"], a: 2 },
-    { q: "44. Что такое Primary Key (Первичный ключ) в базе данных?", opts: ["Пароль доступа к БД", "Уникальное поле для идентификации каждой строки", "Имя таблицы", "Зашифрованный ключ"], a: 1 },
-    { q: "45. Какая команда SQL используется для добавления новых строк в таблицу?", opts: ["ADD", "CREATE", "INSERT INTO", "UPDATE"], a: 2 },
-
-    // --- Кибербезопасность и Основы (46-50) ---
-    { q: "46. Что такое фишинг?", opts: ["Вид интернет-мошенничества для кражи конфиденциальных данных", "Поиск вирусов на ПК", "Специальный метод разгона видеокарты", "Настройка сети"], a: 0 },
-    { q: "47. Сколько байт содержится в 1 Килобайте (КБ)?", opts: ["1000", "1024", "512", "2048"], a: 1 },
-    { q: "48. В какой системе счисления функционируют цифровые компьютеры?", opts: ["Десятичная", "Восьмеричная", "Двоичная", "Шестнадцатеричная"], a: 2 },
-    { q: "49. Что такое Git?", opts: ["Язык программирования", "Распределенная система контроля версий", "База данных", "Операционная система"], a: 1 },
-    { q: "50. Логическое И (AND) в C++ и Java обозначается символом:", opts: ["||", "&&", "and", "&="], a: 1 }
-];
-
-// Генерация вопросов
-const container = document.getElementById('questions-container');
-questions.forEach((item, index) => {
-    let qDiv = document.createElement('div');
-    qDiv.className = 'q-card';
-    
-    let optionsHtml = item.opts.map((opt, i) => `
-        <label>
-            <input type="radio" name="q${index}" value="${i}"> ${opt}
-        </label>
-    `).join('');
-
-    qDiv.innerHTML = `<div class="q-title">${item.q}</div><div class="options">${optionsHtml}</div>`;
-    container.appendChild(qDiv);
-});
-
-// Переключение темы
-function toggleTheme() {
-    const currentTheme = document.body.getAttribute('data-theme');
-    const themeBtn = document.getElementById('themeBtn');
-    if (currentTheme === 'light') {
-        document.body.removeAttribute('data-theme');
-        themeBtn.innerText = '🌙 Тёмная';
-    } else {
-        document.body.setAttribute('data-theme', 'light');
-        themeBtn.innerText = '☀️ Светлая';
-    }
-}
-
-// Подсчет результатов
-function calculateResult() {
-    let score = 0;
+    // Рендерим вопросы через цикл (я старался!)
+    const container = document.getElementById('questions-container');
     questions.forEach((item, index) => {
-        const selected = document.querySelector(`input[name="q${index}"]:checked`);
-        if (selected && parseInt(selected.value) === item.a) {
-            score++;
-        }
+        let qDiv = document.createElement('div');
+        qDiv.className = 'q-card';
+        
+        let optionsHtml = item.opts.map((opt, i) => `
+            <label>
+                <input type="radio" name="q${index}" value="${i}"> ${opt}
+            </label>
+        `).join('');
+
+        qDiv.innerHTML = `<div class="q-title">${item.q}</div><div class="options">${optionsHtml}</div>`;
+        container.appendChild(qDiv);
     });
 
-    const resultsDiv = document.getElementById('results');
-    const scoreText = document.getElementById('scoreText');
-    const feedbackText = document.getElementById('feedbackText');
-    const statusImg = document.getElementById('statusImg');
-
-    scoreText.innerText = `Правильно: ${score} из ${questions.length}`;
-    resultsDiv.style.display = 'block';
-
-    if (score <= 20) {
-        feedbackText.innerText = "Ой, совсем слабо... Учитель поставит 2! Срочно учи матчасть!";
-        statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNiaWFxa2hhM29xM3Y4eG5ycDFzeWRidWFscWl6eXF1NmFjcWVpNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L95W4wv8nnb9K/giphy.gif";
-    } else if (score <= 40) {
-        feedbackText.innerText = "Хороший результат! Твёрдая тройка или четвёрка. Молодчина!";
-        statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODF4OWV4dXAzaHF5bmprZXZmdmI0MnV6OG84czQzdGJua3BuaW1reCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d31w24psGYeekCXY/giphy.gif";
-    } else {
-        feedbackText.innerText = "Невероятно! Ты настоящий Senior-программист! 5+ обеспечена! 😎";
-        statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZtNHR1ZHd3Ym9vZjljandkM3pkeWF3aTFycXZtdndrOGs2cXJvYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13Hgw8hS2aiWZ2/giphy.gif";
+    // Функция смены темы (нагуглил с первого раза)
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const themeBtn = document.getElementById('themeBtn');
+        if (currentTheme === 'light') {
+            document.body.removeAttribute('data-theme');
+            themeBtn.innerText = '🌙 Тёмная';
+        } else {
+            document.body.setAttribute('data-theme', 'light');
+            themeBtn.innerText = '☀️ Светлая';
+        }
     }
 
-    resultsDiv.scrollIntoView({ behavior: 'smooth' });
-}
+    // Подсчет результатов (тут вроде без ошибок, но это не точно)
+    function calculateResult() {
+        let score = 0;
+        questions.forEach((item, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selected && parseInt(selected.value) === item.a) {
+                score++;
+            }
+        });
+
+        const resultsDiv = document.getElementById('results');
+        const scoreText = document.getElementById('scoreText');
+        const feedbackText = document.getElementById('feedbackText');
+        const statusImg = document.getElementById('statusImg');
+
+        scoreText.innerText = `Результат: ${score} из ${questions.length} верно!`;
+        resultsDiv.style.display = 'block';
+
+        if (score <= 8) {
+            feedbackText.innerText = "Блин, ну тут даже компилятор бы заплакал... Пойду почитаю доку по C++ 😭";
+            statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNiaWFxa2hhM29xM3Y4eG5ycDFzeWRidWFscWl6eXF1NmFjcWVpNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L95W4wv8nnb9K/giphy.gif";
+        } else if (score <= 15) {
+            feedbackText.innerText = "Норм! На троечку с плюсом накодил, жить будем! 😎";
+            statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODF4OWV4dXAzaHF5bmprZXZmdmI0MnV6OG84czQzdGJua3BuaW1reCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d31w24psGYeekCXY/giphy.gif";
+        } else {
+            feedbackText.innerText = "Ого! Ты точно не робот из терминатора? Поздравляю, ты красавчик! 🔥";
+            statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZtNHR1ZHd3Ym9vZjljandkM3pkeWF3aTFycXZtdndrOGs2cXJvYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13Hgw8hS2aiWZ2/giphy.gif";
+        }
+
+        resultsDiv.scrollIntoView({ behavior: 'smooth' });
+    }
 </script>
 
 </body>
