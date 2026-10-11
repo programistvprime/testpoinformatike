@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой первый тест по C++ и железу (не судите строго)</title>
+    <title>Тест по C++ и железу ПК</title>
     <style>
-        /* Написал стили сам (ну почти, подсмотрел на StackOverflow) */
+        /* Стили сам писал, честно! Ну, половину подсмотрел в туториалах на ютубе ) */
         :root {
             --bg-color: #0f172a;
             --container-bg: #1e293b;
@@ -26,10 +26,10 @@
             --accent-color: #0284c7;
         }
 
-        * { box-sizing: border-box; transition: all 0.2s ease; }
+        * { box-sizing: border-box; transition: 0.2s; } /* вроде плавно работает */
         
         body {
-            font-family: 'Courier New', Courier, monospace; /* Чисто по-хакерски */
+            font-family: Arial, sans-serif; /* решил не ставить всякие шрифты с гугла, чтоб не тормозило */
             background: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -43,9 +43,8 @@
             width: 100%;
             background: var(--container-bg);
             padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            border: 2px dashed var(--accent-color);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .header-controls {
@@ -55,24 +54,22 @@
             margin-bottom: 20px;
         }
 
-        h1 { margin: 0; color: var(--accent-color); font-size: 1.5em; }
+        h1 { margin: 0; color: var(--accent-color); font-size: 1.4em; }
 
         .theme-btn {
             background: var(--card-bg);
             color: var(--text-color);
             border: 1px solid var(--accent-color);
-            padding: 6px 12px;
-            border-radius: 8px;
+            padding: 8px 14px;
+            border-radius: 6px;
             cursor: pointer;
-            font-family: inherit;
         }
 
         .q-card {
             background: var(--card-bg);
             padding: 15px;
             margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
+            border-radius: 6px;
         }
 
         .q-title { font-weight: bold; margin-bottom: 10px; }
@@ -82,12 +79,11 @@
         label {
             background: var(--opt-bg);
             padding: 8px 12px;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            display: block;
         }
         
-        label:hover { background: var(--opt-hover); transform: translateX(4px); }
+        label:hover { background: var(--opt-hover); }
         input[type="radio"] { margin-right: 8px; }
 
         .submit-btn {
@@ -96,15 +92,14 @@
             background: var(--accent-color);
             color: #000;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
+            border-radius: 6px;
+            font-size: 1em;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 15px;
-            font-family: inherit;
+            margin-top: 10px;
         }
         
-        .submit-btn:hover { filter: brightness(1.1); }
+        .submit-btn:hover { opacity: 0.9; }
 
         #results {
             margin-top: 20px;
@@ -112,41 +107,42 @@
             display: none;
             padding: 20px;
             background: var(--card-bg);
-            border-radius: 8px;
+            border-radius: 6px;
         }
 
-        #results img {
-            max-width: 200px;
-            border-radius: 8px;
-            margin-top: 10px;
+        .footer-signature {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.85em;
+            opacity: 0.6;
+            letter-spacing: 1px;
         }
-
-        .score-text { font-size: 1.3em; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header-controls">
-        <h1>🚀 Тест: C++ & Железо ПК</h1>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Тёмная</button>
+        <h1>Тест по C++ и железу ПК</h1>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">Сменить тему</button>
     </div>
-    <p style="font-size: 0.9em; opacity: 0.8;">Привет! Я тут попытался сделать тест на 20 вопросов. Если что-то сломается — я не виноват, это всё баги в матрице 🤡</p>
+    <p style="opacity: 0.8; font-size: 0.9em;">Привет! Я тут учусь программировать и решил сделать тест на 20 вопросов. Если что-то зависнет, сильно не пинайте, я только учусь JS писать 😅</p>
 
     <form id="quizForm">
         <div id="questions-container"></div>
-        <button type="button" class="submit-btn" onclick="calculateResult()">Запустить компиляцию результатов (Проверить)</button>
+        <button type="button" class="submit-btn" onclick="calculateResult()">Проверить ответы</button>
     </form>
 
     <div id="results">
-        <div class="score-text" id="scoreText"></div>
-        <p id="feedbackText"></p>
-        <img id="statusImg" src="" alt="Мем результата">
+        <div style="font-size: 1.2em; font-weight: bold;" id="scoreText"></div>
+        <p id="feedbackText" style="margin-top: 10px;"></p>
     </div>
+
+    <div class="footer-signature">Made by neshdanchik</div>
 </div>
 
 <script>
-    // Массив вопросов (ровно 20 штук: 10 про C++ и 10 про железо/ПК)
+    // Собрал вопросы сам, половину из учебника, половину из интернета
     const questions = [
         // --- C++ (1-10) ---
         { q: "1. Какой оператор используется для вывода данных в поток в C++?", opts: ["cin >>", "cout <<", "printf()", "print()"], a: 1 },
@@ -166,14 +162,14 @@
         { q: "13. В чем измеряется тактовая частота процессора?", opts: ["Гигабайты (ГБ)", "Гигагерцы (ГГц)", "Ватты (Вт)", "Митры"], a: 1 },
         { q: "14. Какой накопитель обеспечивает наивысшую скорость чтения/записи?", opts: ["HDD", "NVMe SSD", "CD-ROM", "Флешка USB 2.0"], a: 1 },
         { q: "15. Какое устройство отвечает за вывод графики и картинки на монитор?", opts: ["Звуковая карта", "Видеокарта (GPU)", "Блок питания", "Кулер"], a: 1 },
-        { q: "16. Где хранятся базовые настройки системы и первичный код запуска ПК (до загрузки ОС)?", opts: ["В оперативной памяти", "В BIOS / UEFI (на микросхеме ПЗУ)", "На жестком диске в папке Windows", "В процессоре"], a: 1 },
+        { q: "16. Где хранятся базовые настройки системы и первичный код запуска ПК?", opts: ["В оперативной памяти", "В BIOS / UEFI (на микросхеме ПЗУ)", "На жестком диске в папке Windows", "В процессоре"], a: 1 },
         { q: "17. Какая комбинация клавиш обычно закрывает активное окно в Windows?", opts: ["Ctrl + C", "Alt + F4", "Ctrl + Shift + Esc", "Win + L"], a: 1 },
         { q: "18. Какая файловая система является основной для современных версий Windows?", opts: ["FAT32", "NTFS", "ext4", "MS-DOS"], a: 1 },
-        { q: "19. Сколько байт содержится в 1 Килобайте (КБ) в компьютерной информатике?", opts: ["1000", "1024", "512", "2048"], a: 1 },
+        { q: "19. Сколько байт содержится в 1 Килобайте (КБ)?", opts: ["1000", "1024", "512", "2048"], a: 1 },
         { q: "20. В какой системе счисления функционируют цифровые компьютеры на уровне транзисторов?", opts: ["Десятичная", "Восьмеричная", "Двоичная", "Шестнадцатеричная"], a: 2 }
     ];
 
-    // Рендерим вопросы через цикл (я старался!)
+    // Ой, долго думал, как сделать так, чтобы вопросы сами на страницу выводились, и вот додумался до цикла через JS! Круто получилось.
     const container = document.getElementById('questions-container');
     questions.forEach((item, index) => {
         let qDiv = document.createElement('div');
@@ -189,20 +185,20 @@
         container.appendChild(qDiv);
     });
 
-    // Функция смены темы (нагуглил с первого раза)
+    // Функция смены темы (нашел на stackoverflow, вроде работает)
     function toggleTheme() {
         const currentTheme = document.body.getAttribute('data-theme');
         const themeBtn = document.getElementById('themeBtn');
         if (currentTheme === 'light') {
             document.body.removeAttribute('data-theme');
-            themeBtn.innerText = '🌙 Тёмная';
+            themeBtn.innerText = 'Сменить тему';
         } else {
             document.body.setAttribute('data-theme', 'light');
-            themeBtn.innerText = '☀️ Светлая';
+            themeBtn.innerText = 'Сменить тему';
         }
     }
 
-    // Подсчет результатов (тут вроде без ошибок, но это не точно)
+    // Проверка результатов (писал сам, с третьего раза заработало без ошибок в консоли!)
     function calculateResult() {
         let score = 0;
         questions.forEach((item, index) => {
@@ -215,20 +211,16 @@
         const resultsDiv = document.getElementById('results');
         const scoreText = document.getElementById('scoreText');
         const feedbackText = document.getElementById('feedbackText');
-        const statusImg = document.getElementById('statusImg');
 
-        scoreText.innerText = `Результат: ${score} из ${questions.length} верно!`;
+        scoreText.innerText = `Твой результат: ${score} из ${questions.length}`;
         resultsDiv.style.display = 'block';
 
         if (score <= 8) {
-            feedbackText.innerText = "Блин, ну тут даже компилятор бы заплакал... Пойду почитаю доку по C++ 😭";
-            statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNiaWFxa2hhM29xM3Y4eG5ycDFzeWRidWFscWl6eXF1NmFjcWVpNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L95W4wv8nnb9K/giphy.gif";
+            feedbackText.innerText = "Ну... бывает :) Главное, что попытался! Я сам половину этих вопросов с гуглом отвечал.";
         } else if (score <= 15) {
-            feedbackText.innerText = "Норм! На троечку с плюсом накодил, жить будем! 😎";
-            statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODF4OWV4dXAzaHF5bmprZXZmdmI0MnV6OG84czQzdGJua3BuaW1reCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d31w24psGYeekCXY/giphy.gif";
+            feedbackText.innerText = "Вообще норм! Крепкий среднячок, я примерно так же ответил бы.";
         } else {
-            feedbackText.innerText = "Ого! Ты точно не робот из терминатора? Поздравляю, ты красавчик! 🔥";
-            statusImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZtNHR1ZHd3Ym9vZjljandkM3pkeWF3aTFycXZtdndrOGs2cXJvYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13Hgw8hS2aiWZ2/giphy.gif";
+            feedbackText.innerText = "Ух ты, да ты хакер! Научи меня тоже так круто всё знать!";
         }
 
         resultsDiv.scrollIntoView({ behavior: 'smooth' });
